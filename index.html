@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diabetes Prediction System</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            background: white;
+            margin: 30px auto;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            background-color: green;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .result {
+            font-size: 20px;
+            color: blue;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .graph {
+            margin-top: 30px;
+        }
+
+        .graph img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Diabetes Prediction System</h1>
+
+    <form action="/predict" method="post">
+        <input type="number" name="pregnancies" placeholder="Pregnancies" required>
+        <input type="number" name="glucose" placeholder="Glucose Level" required>
+        <input type="number" name="blood_pressure" placeholder="Blood Pressure" required>
+        <input type="number" name="skin_thickness" placeholder="Skin Thickness" required>
+        <input type="number" name="insulin" placeholder="Insulin Level" required>
+        <input type="number" step="any" name="bmi" placeholder="BMI" required>
+        <input type="number" step="any" name="diabetes_pedigree" placeholder="Diabetes Pedigree Function" required>
+        <input type="number" name="age" placeholder="Age" required>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    <div class="result">
+        {{ prediction_text }}
+    </div>
+
+    <div class="graph">
+        <h2>Model Accuracy Comparison</h2>
+        <img src="{{ url_for('static', filename='accuracy_graph.png') }}">
+    </div>
+
+    <div class="graph">
+        <h2>Confusion Matrix</h2>
+        <img src="{{ url_for('static', filename='confusion_matrix.png') }}">
+    </div>
+
+    <div class="graph">
+        <h2>Feature Importance</h2>
+        <img src="{{ url_for('static', filename='feature_importance.png') }}">
+    </div>
+
+    <div class="graph">
+        <h2>Diabetic vs Non-Diabetic Distribution</h2>
+        <img src="{{ url_for('static', filename='pie_chart.png') }}">
+    </div>
+
+    <div class="graph">
+        <h2>ROC Curve</h2>
+        <img src="{{ url_for('static', filename='roc_curve.png') }}">
+    </div>
+</div>
+
+</body>
+</html>
